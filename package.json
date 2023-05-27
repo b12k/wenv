@@ -1,6 +1,6 @@
 {
   "name": "@b12k/wenv",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Checks environment variables and exits, that's it...",
   "publishConfig": {
     "access": "public"
