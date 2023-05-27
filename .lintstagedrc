@@ -1,0 +1,4 @@
+{
+  "*": ["pnpm prettier --check --ignore-unknown"],
+  "*.ts": ["pnpm eslint"]
+}

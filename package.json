@@ -1,0 +1,81 @@
+{
+  "name": "@b12k/wenv",
+  "version": "0.0.0",
+  "description": "Checks environment variables and exits, that's it...",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "wenv": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [],
+  "author": "Bogdan Kolesnyk",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/b12k/wenv.git"
+  },
+  "homepage": "https://github.com/b12k/wenv",
+  "bugs": {
+    "url": "https://github.com/b12k/wenv/issues"
+  },
+  "scripts": {
+    "dev": "pnpm clean && run-p _dev:*",
+    "_dev:types": "pnpm _build:types && chokidar \"./dist/**/*.js\" -c \"pnpm _build:types\"",
+    "_dev:scripts": "pnpm _build:scripts --watch",
+    "lint": "run-p _lint:*",
+    "_lint:types": "tsc --noEmit",
+    "_lint:scripts": "eslint ./src/**/*.ts",
+    "_lint:codestyle": "pnpm prettier . --check",
+    "build": "pnpm clean && run-p _build:*",
+    "_build:types": "tsc --emitDeclarationOnly",
+    "_build:scripts": "swc ./src -d ./dist",
+    "clean": "shx rm -rf ./dist",
+    "prepare": "husky install",
+    "release": "release-it --ci",
+    "husky:pre-commit": "run-p _husky:pre-commit:*",
+    "_husky:pre-commit:typecheck": "pnpm _lint:types",
+    "_husky:pre-commit:lintstaged": "lint-staged"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "17.6.3",
+    "@commitlint/config-conventional": "17.6.3",
+    "@release-it/conventional-changelog": "5.1.1",
+    "@swc/cli": "0.1.62",
+    "@swc/core": "1.3.60",
+    "@swc/helpers": "0.5.1",
+    "@types/folder-hash": "4.0.2",
+    "@types/fs-extra": "11.0.1",
+    "@types/glob": "8.1.0",
+    "@types/node": "20.2.4",
+    "@types/semver": "7.5.0",
+    "@typescript-eslint/eslint-plugin": "5.59.7",
+    "@typescript-eslint/parser": "5.59.7",
+    "chokidar": "3.5.3",
+    "chokidar-cli": "3.0.0",
+    "eslint": "8.41.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-airbnb-typescript": "17.0.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-import-resolver-typescript": "3.5.5",
+    "eslint-plugin-eslint-comments": "3.2.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-promise": "6.1.1",
+    "eslint-plugin-simple-import-sort": "10.0.0",
+    "eslint-plugin-unicorn": "47.0.0",
+    "eslint-plugin-unused-imports": "2.0.0",
+    "husky": "8.0.3",
+    "lint-staged": "13.2.2",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.8.8",
+    "release-it": "15.10.3",
+    "shx": "0.3.4",
+    "typescript": "5.0.4"
+  },
+  "dependencies": {
+    "commander": "10.0.1"
+  }
+}
